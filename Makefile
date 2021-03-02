@@ -9,7 +9,7 @@ init: ## Initialize Terraform configurations
 	terraform init
 
 up: init ## Starts a Kubernetes cluster running local using Docker containers and apply all solution components
-	terraform apply -auto-approve -var-file=testing.tfvars
+	terraform apply -auto-approve
 
 down: ## Uninstall all solution components and destroy the local Kubernetes cluster
 	terraform destroy -auto-approve

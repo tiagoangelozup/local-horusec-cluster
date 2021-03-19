@@ -35,6 +35,6 @@ resource "kubernetes_secret" "horusec_jwt" {
   }
 
   data = {
-    "secret-key" = uuid()
+    "secret-key" = "74266279-766d-3075-7a2f-36587132a5eb"
   }
 }

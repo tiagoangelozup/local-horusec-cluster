@@ -2,7 +2,6 @@ resource "helm_release" "postgres" {
   name = "postgresql"
   chart = "https://charts.bitnami.com/bitnami/postgresql-10.3.7.tgz"
   namespace = kubernetes_namespace.database.metadata[0].name
-  timeout = 240
 
   set {
     name = "postgresqlDatabase"

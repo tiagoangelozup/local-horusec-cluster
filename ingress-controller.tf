@@ -2,7 +2,6 @@ resource "helm_release" "ingress_nginx" {
   name = "ingress-nginx"
   chart = "https://github.com/kubernetes/ingress-nginx/releases/download/helm-chart-3.23.0/ingress-nginx-3.23.0.tgz"
   namespace = kubernetes_namespace.ingress.metadata[0].name
-  timeout = 240
 
   values = [
     yamlencode({

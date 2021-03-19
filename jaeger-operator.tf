@@ -8,7 +8,6 @@ resource "helm_release" "jaeger_operator" {
   name = "jaeger-operator"
   chart = "https://github.com/jaegertracing/helm-charts/releases/download/jaeger-operator-2.19.1/jaeger-operator-2.19.1.tgz"
   namespace = kubernetes_namespace.tracing.metadata[0].name
-  timeout = 240
 }
 
 resource "kustomization_resource" "jaeger_custom_resource" {

@@ -19,8 +19,12 @@ resource "helm_release" "keycloak" {
         adminUser = "admin"
         adminPassword = "admin"
       }
-      ingress = { enabled = true }
+      ingress = { enabled = true, hostname = "keycloak.iam" }
       service = { type = "ClusterIP" }
+      extraEnvVars = [
+        { name = "KEYCLOAK_LOGLEVEL", value = "DEBUG" },
+        { name = "ROOT_LOGLEVEL", value = "DEBUG" }
+      ]
     })
   ]
 }

@@ -38,3 +38,15 @@ resource "kubernetes_secret" "horusec_jwt" {
     "secret-key" = "74266279-766d-3075-7a2f-36587132a5eb"
   }
 }
+
+resource "kubernetes_secret" "horusec_smtp" {
+  metadata {
+    name = "horusec-smtp"
+    namespace = kubernetes_namespace.horusec.metadata[0].name
+  }
+
+  data = {
+    "username" = "5m7p-u53rn4m3"
+    "password" = "5m7p-p455w0rd"
+  }
+}

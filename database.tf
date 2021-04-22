@@ -7,6 +7,11 @@ resource "helm_release" "postgres" {
     name = "postgresqlDatabase"
     value = "horusec_db"
   }
+
+  set {
+    name = "postgresqlPassword"
+    value = "Jhea7mg0df"
+  }
 }
 
 resource "kubernetes_namespace" "database" {

@@ -1,3 +1,9 @@
+variable "namespace" {
+  type = string
+  description = "The namespace where the solution will be installed"
+  default = "horusec-system"
+}
+
 variable "jaeger_enabled" {
   type = bool
   description = "If set to true, it will deploy Jaeger"

@@ -7,7 +7,7 @@ resource "kubernetes_namespace" "horusec" {
 resource "kubernetes_secret" "horusec_broker" {
   metadata {
     name = "horusec-broker"
-    namespace = kubernetes_namespace.horusec.metadata[0].name
+    namespace = var.namespace
   }
 
   data = {
@@ -19,7 +19,7 @@ resource "kubernetes_secret" "horusec_broker" {
 resource "kubernetes_secret" "horusec_database" {
   metadata {
     name = "horusec-database"
-    namespace = kubernetes_namespace.horusec.metadata[0].name
+    namespace = var.namespace
   }
 
   data = {
@@ -31,7 +31,7 @@ resource "kubernetes_secret" "horusec_database" {
 resource "kubernetes_secret" "horusec_jwt" {
   metadata {
     name = "horusec-jwt"
-    namespace = kubernetes_namespace.horusec.metadata[0].name
+    namespace = var.namespace
   }
 
   data = {
@@ -42,7 +42,7 @@ resource "kubernetes_secret" "horusec_jwt" {
 resource "kubernetes_secret" "horusec_smtp" {
   metadata {
     name = "horusec-smtp"
-    namespace = kubernetes_namespace.horusec.metadata[0].name
+    namespace = var.namespace
   }
 
   data = {

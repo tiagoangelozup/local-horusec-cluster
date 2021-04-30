@@ -1,6 +1,7 @@
+// kustomize build github.com/ZupIT/horusec-operator/config/default?ref=v1.0.0 | kubectl apply -f -
 data "kustomization_overlay" "horusec_operator" {
   resources = [
-    "github.com/ZupIT/horusec-operator/config/default?ref=develop",
+    "github.com/ZupIT/horusec-operator/config/default?ref=v${var.horusec_operator_version}",
   ]
 
   images {

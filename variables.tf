@@ -19,11 +19,11 @@ variable "keycloak_enabled" {
 variable "horusec_operator_version" {
   type = string
   description = "The version of Horusec Kubernetes Operator"
-  default = "0.1.14"
+  default = "1.0.0"
 }
 
 variable "horusec_admin_version" {
   type = string
   description = "The version of Horusec Administrator"
-  default = "0.0.1"
+  default = "1.0.0"
 }

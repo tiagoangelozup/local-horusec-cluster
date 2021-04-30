@@ -1,6 +1,8 @@
+// kustomize build github.com/ZupIT/horusec-admin/deployments/k8s/overlays/production?ref=v1.0.0 | kubectl apply -f -
+// kubectl apply -k github.com/ZupIT/horusec-admin/deployments/k8s/base?ref=v1.0.0
 data "kustomization_overlay" "horusec_admin" {
   resources = [
-    "github.com/ZupIT/horusec-admin/deployments/k8s/overlays/staging?ref=develop",
+    "github.com/ZupIT/horusec-admin/deployments/k8s/overlays/production?ref=v${var.horusec_admin_version}",
   ]
 
   namespace = var.namespace

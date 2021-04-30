@@ -46,7 +46,7 @@ resource "kubernetes_secret" "horusec_smtp" {
   }
 
   data = {
-    "username" = "5m7p-u53rn4m3"
-    "password" = "5m7p-p455w0rd"
+    "username" = "3dcf6374062286"
+    "password" = "1a29e895468521"
   }
 }

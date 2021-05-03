@@ -19,6 +19,5 @@ resource "kustomization_resource" "horusec_admin" {
 
   depends_on = [
     kubernetes_namespace.horusec,
-    kustomization_resource.horusec_operator,
   ]
 }

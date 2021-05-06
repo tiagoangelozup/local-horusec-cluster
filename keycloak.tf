@@ -10,8 +10,11 @@ resource "helm_release" "keycloak" {
   count = var.keycloak_enabled ? 1 : 0
 
   name = "keycloak"
-  chart = "https://charts.bitnami.com/bitnami/keycloak-2.3.0.tgz"
   namespace = kubernetes_namespace.iam[0].metadata[0].name
+
+  repository = "https://charts.bitnami.com/bitnami"
+  chart = "keycloak"
+  version = "2.4.7"
 
   values = [
     yamlencode({

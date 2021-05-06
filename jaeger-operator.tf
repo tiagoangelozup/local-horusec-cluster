@@ -10,8 +10,11 @@ resource "helm_release" "jaeger_operator" {
   count = var.jaeger_enabled ? 1 : 0
 
   name = "jaeger-operator"
-  chart = "https://github.com/jaegertracing/helm-charts/releases/download/jaeger-operator-2.19.1/jaeger-operator-2.19.1.tgz"
   namespace = kubernetes_namespace.tracing[0].metadata[0].name
+
+  repository = "https://jaegertracing.github.io/helm-charts"
+  chart = "jaeger-operator"
+  version = "2.21.0"
 }
 
 resource "kustomization_resource" "jaeger_custom_resource" {

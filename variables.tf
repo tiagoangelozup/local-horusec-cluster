@@ -16,6 +16,12 @@ variable "keycloak_enabled" {
   default = false
 }
 
+variable "argo_enabled" {
+  type = bool
+  description = "If set to true, it will deploy ArgoCD"
+  default = false
+}
+
 variable "horusec_operator_version" {
   type = string
   description = "The version of Horusec Kubernetes Operator"

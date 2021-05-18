@@ -1,6 +1,8 @@
 resource "helm_release" "argocd" {
+  count = var.argo_enabled ? 1 : 0
+
   name = "argocd"
-  namespace = kubernetes_namespace.ops.metadata[0].name
+  namespace = var.argo_namespace
 
   repository = "https://argoproj.github.io/argo-helm"
   chart = "argo-cd"
@@ -38,6 +40,8 @@ resource "helm_release" "argocd" {
 }
 
 resource "kubernetes_namespace" "ops" {
+  count = var.argo_enabled ? 1 : 0
+
   metadata {
     name = var.argo_namespace
   }

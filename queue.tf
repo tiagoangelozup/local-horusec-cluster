@@ -1,7 +1,10 @@
 resource "helm_release" "rabbit" {
   name = "rabbitmq"
-  chart = "https://charts.bitnami.com/bitnami/rabbitmq-8.11.1.tgz"
   namespace = kubernetes_namespace.queue.metadata[0].name
+
+  repository = "https://charts.bitnami.com/bitnami"
+  chart = "rabbitmq"
+  version = "8.15.3"
 
   set {
     name = "auth.password"

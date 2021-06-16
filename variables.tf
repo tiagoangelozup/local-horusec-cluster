@@ -7,7 +7,7 @@ variable "horusec_namespace" {
 variable "jaeger_enabled" {
   type = bool
   description = "If set to true, it will deploy Jaeger"
-  default = false
+  default = true
 }
 
 variable "keycloak_enabled" {

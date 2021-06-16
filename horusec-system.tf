@@ -1,4 +1,4 @@
-resource "kubernetes_namespace" "horusec" {
+resource "kubernetes_namespace" "horusec_system" {
   metadata {
     name = "horusec-system"
   }
@@ -16,15 +16,25 @@ resource "kubernetes_secret" "horusec_broker" {
   }
 }
 
-resource "kubernetes_secret" "horusec_database" {
+resource "kubernetes_secret" "platform_db" {
   metadata {
-    name = "horusec-database"
-    namespace = var.horusec_namespace
+    name = "platform-db"
+    namespace = kubernetes_namespace.horusec_system.metadata[0].name
   }
-
   data = {
-    "username" = "postgres"
-    "password" = data.kubernetes_secret.postgres.data.postgresql-password
+    postgresql-username = local.database.platform.username
+    postgresql-password = local.database.platform.password
+  }
+}
+
+resource "kubernetes_secret" "analytic_db" {
+  metadata {
+    name = "analytic-db"
+    namespace = kubernetes_namespace.horusec_system.metadata[0].name
+  }
+  data = {
+    postgresql-username = local.database.analytic.username
+    postgresql-password = local.database.analytic.password
   }
 }
 

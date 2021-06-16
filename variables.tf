@@ -25,13 +25,13 @@ variable "argo_enabled" {
 variable "horusec_operator_version" {
   type = string
   description = "The version of Horusec Kubernetes Operator"
-  default = "1.0.0"
+  default = "develop"
 }
 
 variable "horusec_admin_version" {
   type = string
   description = "The version of Horusec Administrator"
-  default = "1.0.0"
+  default = "develop"
 }
 
 variable "argo_namespace" {

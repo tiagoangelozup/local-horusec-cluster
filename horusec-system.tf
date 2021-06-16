@@ -1,6 +1,6 @@
 resource "kubernetes_namespace" "horusec_system" {
   metadata {
-    name = "horusec-system"
+    name = var.horusec_namespace
   }
 }
 

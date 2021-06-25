@@ -24,6 +24,17 @@ spec:
         readinessProbe:
           timeoutSeconds: 3
       enabled: true
+      mailServer:
+        host: smtp.mailtrap.io
+        password:
+          secretKeyRef:
+            key: password
+            name: "${SMTP_SECRET_NAME}"
+        port: 2525
+        user:
+          secretKeyRef:
+            key: username
+            name: "${SMTP_SECRET_NAME}"
   global:
     broker:
       host: "${RABBITMQ_HOST}"

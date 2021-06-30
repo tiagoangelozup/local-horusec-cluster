@@ -14,7 +14,7 @@ resource "helm_release" "keycloak" {
 
   repository = "https://charts.bitnami.com/bitnami"
   chart = "keycloak"
-  version = "2.4.7"
+  version = "3.1.1"
 
   values = [
     yamlencode({

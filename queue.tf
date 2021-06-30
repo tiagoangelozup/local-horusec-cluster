@@ -4,7 +4,7 @@ resource "helm_release" "rabbit" {
 
   repository = "https://charts.bitnami.com/bitnami"
   chart = "rabbitmq"
-  version = "8.15.3"
+  version = "8.16.1"
 
   set {
     name = "auth.password"

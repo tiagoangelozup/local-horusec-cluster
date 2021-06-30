@@ -4,6 +4,12 @@ variable "horusec_namespace" {
   default = "horusec-system"
 }
 
+variable "ldap_enabled" {
+  type = bool
+  description = "If set to true, it will deploy OpenLDAP"
+  default = true
+}
+
 variable "jaeger_enabled" {
   type = bool
   description = "If set to true, it will deploy Jaeger"
@@ -25,7 +31,7 @@ variable "argo_enabled" {
 variable "horusec_operator_version" {
   type = string
   description = "The version of Horusec Kubernetes Operator"
-  default = "develop"
+  default = "v2.0.0"
 }
 
 variable "horusec_admin_version" {

@@ -7,13 +7,13 @@ variable "horusec_namespace" {
 variable "ldap_enabled" {
   type = bool
   description = "If set to true, it will deploy OpenLDAP"
-  default = true
+  default = false
 }
 
 variable "jaeger_enabled" {
   type = bool
   description = "If set to true, it will deploy Jaeger"
-  default = true
+  default = false
 }
 
 variable "keycloak_enabled" {

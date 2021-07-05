@@ -1,7 +1,7 @@
 variable "horusec_namespace" {
   type = string
   description = "The namespace where the solution will be installed"
-  default = "horusec-system"
+  default = "security"
 }
 
 variable "ldap_enabled" {

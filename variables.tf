@@ -37,7 +37,7 @@ variable "horusec_operator_version" {
 variable "horusec_admin_version" {
   type = string
   description = "The version of Horusec Administrator"
-  default = "develop"
+  default = "v2.0.0"
 }
 
 variable "argo_namespace" {

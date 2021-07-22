@@ -17,6 +17,20 @@ spec:
           secretKeyRef:
             key: postgresql-username
             name: "${ANALYTIC_DB_SECRET_NAME}"
+      ingress:
+        host: analytic-7f000001.nip.io
+    api:
+      ingress:
+        host: api-7f000001.nip.io
+    auth:
+      ingress:
+        host: auth-7f000001.nip.io
+    core:
+      ingress:
+        host: core-7f000001.nip.io
+    manager:
+      ingress:
+        host: manager-7f000001.nip.io
     messages:
       container:
         livenessProbe:
@@ -24,6 +38,8 @@ spec:
         readinessProbe:
           timeoutSeconds: 3
       enabled: true
+      ingress:
+        host: messages-7f000001.nip.io
       mailServer:
         host: smtp.mailtrap.io
         password:
@@ -35,6 +51,12 @@ spec:
           secretKeyRef:
             key: username
             name: "${SMTP_SECRET_NAME}"
+    vulnerability:
+      ingress:
+        host: vulnerability-7f000001.nip.io
+    webhook:
+      ingress:
+        host: webhook-7f000001.nip.io
   global:
     broker:
       host: "${RABBITMQ_HOST}"

@@ -6,7 +6,7 @@ resource "helm_release" "argocd" {
 
   repository = "https://argoproj.github.io/argo-helm"
   chart = "argo-cd"
-  version = "3.6.11"
+  version = "3.10.0"
 
   values = [
     yamlencode({
@@ -14,7 +14,7 @@ resource "helm_release" "argocd" {
       global = { image = { repository: "argoproj/argocd", tag: "v2.0.4" } }
       server = {
         extraArgs = [ "--insecure" ]
-        ingress = { enabled = true, hosts = [ "argocd.local" ] }
+        ingress = { enabled = true, hosts = [ "argo-7f000001.nip.io" ] }
         additionalApplications = [
           {
             destination = { namespace = "horusec-operator-system", server = "https://kubernetes.default.svc" }

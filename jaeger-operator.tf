@@ -28,11 +28,31 @@ resource "kustomization_resource" "jaeger_custom_resource" {
       namespace = kubernetes_namespace.tracing[0].metadata[0].name
     }
     spec = {
-      ingress = { enabled = true, hosts = [ "jaeger.lvh.me" ] }
+      ingress = { enabled = true, hosts = [ "jaeger-ui.lvh.me" ] }
     }
   })
 
   depends_on = [
     helm_release.jaeger_operator
   ]
+}
+
+resource "kubernetes_ingress" "jaeger_collector" {
+  metadata {
+    name = "jaeger-collector"
+    namespace = kubernetes_namespace.tracing[0].metadata[0].name
+  }
+  spec {
+    rule {
+      host = "jaeger-collector.lvh.me"
+      http {
+        path {
+          backend {
+            service_name = "jaeger-collector"
+            service_port = "14268"
+          }
+        }
+      }
+    }
+  }
 }

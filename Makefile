@@ -1,3 +1,8 @@
+ifneq (,$(wildcard ./.env))
+	include .env
+	export $(shell sed 's/=.*//' .env)
+endif
+
 .PHONY: help
 
 help: ## This help.
@@ -13,6 +18,9 @@ up: init ## Starts a Kubernetes cluster running local using Docker containers an
 
 down: ## Uninstall all solution components and destroy the local Kubernetes cluster
 	terraform destroy -auto-approve
+
+plan: ## Check for changes and creates an execution plan
+	terraform plan
 
 clean: ## Removing all Terraform generated config files
 	rm -rf .terraform .terraform.lock.hcl terraform.tfstate* horusec-config

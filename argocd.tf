@@ -6,12 +6,12 @@ resource "helm_release" "argocd" {
 
   repository = "https://argoproj.github.io/argo-helm"
   chart = "argo-cd"
-  version = "3.10.0"
+  version = "3.11.1"
 
   values = [
     yamlencode({
       fullnameOverride = "argocd",
-      global = { image = { repository: "argoproj/argocd", tag: "v2.0.4" } }
+      global = { image = { repository: "argoproj/argocd", tag: "v2.0.5" } }
       server = {
         extraArgs = [ "--insecure" ]
         ingress = { enabled = true, hosts = [ "argo.lvh.me" ] }
@@ -23,7 +23,7 @@ resource "helm_release" "argocd" {
             source = {
               path = "config/default",
               repoURL = "https://github.com/ZupIT/horusec-operator",
-              targetRevision = "v2.0.0"
+              targetRevision = var.horusec_operator_version
             }
             syncPolicy = { automated = {}, syncOptions = [ "CreateNamespace=true" ] }
           }

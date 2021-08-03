@@ -38,6 +38,8 @@ resource "kustomization_resource" "jaeger_custom_resource" {
 }
 
 resource "kubernetes_ingress" "jaeger_collector" {
+  count = var.jaeger_enabled ? 1 : 0
+
   metadata {
     name = "jaeger-collector"
     namespace = kubernetes_namespace.tracing[0].metadata[0].name

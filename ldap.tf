@@ -6,7 +6,7 @@ resource "helm_release" "openldap" {
 
   repository = "https://jp-gouin.github.io/helm-openldap"
   chart = "openldap-stack-ha"
-  version = "2.1.4"
+  version = "2.1.5"
 
   values = [
     yamlencode({

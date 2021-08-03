@@ -1,5 +1,7 @@
 resource "kustomization_resource" "horusec_platform" {
-  manifest = jsonencode(yamldecode(data.template_file.horusec_platform.rendered))
+  count = var.horusec_operator_enabled ? 1 : 0
+
+  manifest = jsonencode(yamldecode(data.template_file.horusec_platform[0].rendered))
 
   depends_on = [
     kustomization_resource.horusec_operator
@@ -7,6 +9,8 @@ resource "kustomization_resource" "horusec_platform" {
 }
 
 data "template_file" "horusec_platform" {
+  count = var.horusec_operator_enabled ? 1 : 0
+
   template = file("${path.module}/horusec-platform.yaml")
   vars = {
     NAMESPACE = kubernetes_namespace.horusec_system.metadata[0].name

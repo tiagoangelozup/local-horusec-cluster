@@ -1,7 +1,7 @@
 variable "horusec_namespace" {
   type = string
   description = "The namespace where the solution will be installed"
-  default = "security"
+  default = "appsec"
 }
 
 variable "ldap_enabled" {
@@ -34,10 +34,22 @@ variable "horusec_operator_version" {
   default = "v2.1.1"
 }
 
+variable "horusec_operator_enabled" {
+  type = bool
+  description = "If set to true, it will deploy Horusec Kubernetes Operator"
+  default = false
+}
+
 variable "horusec_admin_version" {
   type = string
   description = "The version of Horusec Administrator"
   default = "v2.0.0"
+}
+
+variable "horusec_admin_enabled" {
+  type = bool
+  description = "If set to true, it will deploy Horusec Administrator"
+  default = false
 }
 
 variable "argo_namespace" {

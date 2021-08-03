@@ -1,4 +1,6 @@
 data "kustomization_overlay" "horusec_admin" {
+  count = var.horusec_admin_enabled ? 1 : 0
+
   namespace = var.horusec_namespace
 
   resources = [
@@ -12,8 +14,8 @@ data "kustomization_overlay" "horusec_admin" {
 }
 
 resource "kustomization_resource" "horusec_admin" {
-  for_each = data.kustomization_overlay.horusec_admin.ids
-  manifest = data.kustomization_overlay.horusec_admin.manifests[each.value]
+  for_each = length(data.kustomization_overlay.horusec_admin) > 0 ? data.kustomization_overlay.horusec_admin[0].ids : toset([])
+  manifest = data.kustomization_overlay.horusec_admin[0].manifests[each.value]
 
   depends_on = [
     kubernetes_namespace.horusec_system

@@ -18,19 +18,19 @@ spec:
             key: postgresql-username
             name: "${ANALYTIC_DB_SECRET_NAME}"
       ingress:
-        host: analytic-7f000001.nip.io
+        host: analytic.lvh.me
     api:
       ingress:
-        host: api-7f000001.nip.io
+        host: api.lvh.me
     auth:
       ingress:
-        host: auth-7f000001.nip.io
+        host: auth.lvh.me
     core:
       ingress:
-        host: core-7f000001.nip.io
+        host: core.lvh.me
     manager:
       ingress:
-        host: manager-7f000001.nip.io
+        host: manager.lvh.me
     messages:
       container:
         livenessProbe:
@@ -39,7 +39,7 @@ spec:
           timeoutSeconds: 3
       enabled: true
       ingress:
-        host: messages-7f000001.nip.io
+        host: messages.lvh.me
       mailServer:
         host: smtp.mailtrap.io
         password:
@@ -53,10 +53,10 @@ spec:
             name: "${SMTP_SECRET_NAME}"
     vulnerability:
       ingress:
-        host: vulnerability-7f000001.nip.io
+        host: vulnerability.lvh.me
     webhook:
       ingress:
-        host: webhook-7f000001.nip.io
+        host: webhook.lvh.me
   global:
     broker:
       host: "${RABBITMQ_HOST}"

@@ -1,0 +1,88 @@
+---
+apiVersion: install.horusec.io/v2alpha1
+kind: HorusecPlatform
+metadata:
+  name: simplest
+  namespace: appsec
+spec:
+  components:
+    analytic:
+      container:
+        image:
+          tag: dev.1
+      database:
+        host: postgresql.database.svc.cluster.local
+        name: analytic_db
+        password:
+          secretKeyRef:
+            key: postgresql-password
+            name: analytic-db
+        user:
+          secretKeyRef:
+            key: postgresql-username
+            name: analytic-db
+      ingress:
+        host: analytic.lvh.me
+    api:
+      container:
+        image:
+          tag: dev.1
+      ingress:
+        host: api.lvh.me
+    auth:
+      container:
+        image:
+          tag: dev.1
+      ingress:
+        host: auth.lvh.me
+    core:
+      container:
+        image:
+          tag: dev.1
+      ingress:
+        host: core.lvh.me
+    manager:
+      container:
+        image:
+          tag: dev.1
+      ingress:
+        host: manager.lvh.me
+    messages:
+      enabled: false
+    vulnerability:
+      container:
+        image:
+          tag: dev.1
+      ingress:
+        host: vulnerability.lvh.me
+    webhook:
+      container:
+        image:
+          tag: dev.1
+      ingress:
+        host: webhook.lvh.me
+  global:
+    broker:
+      host: rabbitmq.queue.svc.cluster.local
+      password:
+        secretKeyRef:
+          key: password
+          name: horusec-broker
+      user:
+        secretKeyRef:
+          key: username
+          name: horusec-broker
+    database:
+      host: postgresql.database.svc.cluster.local
+      password:
+        secretKeyRef:
+          key: postgresql-password
+          name: platform-db
+      user:
+        secretKeyRef:
+          key: postgresql-username
+          name: platform-db
+    jwt:
+      secretKeyRef:
+        key: secret-key
+        name: horusec-jwt

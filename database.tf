@@ -1,7 +1,8 @@
 locals {
   database = {
-    platform = { database = "horusec_db", username = "platform", password = "ada875581dfb" }
-    analytic = { database = "analytic_db", username = "analytic", password = "4dffe5f19a27" }
+    platform = { database = "horusec_db", username = "platform", password = "qpg.ZUB5rfb6kzc8vpw" }
+    analytic = { database = "analytic_db", username = "analytic", password = "NDV5upw7ufb_tmc!hcn" }
+    keycloak = { database = "keycloak_db", username = "keycloak", password = "buk1azp.kqc5tbg*VZR" }
   }
 }
 
@@ -19,7 +20,7 @@ resource "helm_release" "postgresql" {
   }
 
   set {
-    name = "nameOverride"
+    name = "fullnameOverride"
     value = "postgresql"
   }
 }
@@ -44,6 +45,10 @@ resource "kubernetes_secret" "userdata" {
       create database ${local.database.analytic.database};
       create user ${local.database.analytic.username} with encrypted password '${local.database.analytic.password}';
       grant all privileges on database ${local.database.analytic.database} to ${local.database.analytic.username};
+
+      create database ${local.database.keycloak.database};
+      create user ${local.database.keycloak.username} with encrypted password '${local.database.keycloak.password}';
+      grant all privileges on database ${local.database.keycloak.database} to ${local.database.keycloak.username};
     EOT
   }
 }

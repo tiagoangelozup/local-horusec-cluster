@@ -1,8 +1,18 @@
 locals {
   database = {
-    platform = { database = "horusec_db", username = "platform", password = "ada875581dfb" }
-    analytic = { database = "analytic_db", username = "analytic", password = "4dffe5f19a27" }
+    platform = { database = "horusec_db", username = "platform", password = random_password.horusec_db.result }
+    analytic = { database = "analytic_db", username = "analytic", password = random_password.analytic_db.result }
   }
+}
+
+resource "random_password" "horusec_db" {
+  length = 16
+  special = false
+}
+
+resource "random_password" "analytic_db" {
+  length = 16
+  special = false
 }
 
 resource "helm_release" "postgresql" {

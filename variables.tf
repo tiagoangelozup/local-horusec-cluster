@@ -31,7 +31,7 @@ variable "argo_enabled" {
 variable "horusec_operator_version" {
   type = string
   description = "The version of Horusec Kubernetes Operator"
-  default = "v2.1.2"
+  default = "v2.1.3"
 }
 
 variable "horusec_operator_enabled" {

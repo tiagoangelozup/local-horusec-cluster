@@ -1,13 +1,3 @@
-resource "kustomization_resource" "horusec_platform" {
-  count = var.horusec_operator_enabled ? 1 : 0
-
-  manifest = jsonencode(yamldecode(data.template_file.horusec_platform[0].rendered))
-
-  depends_on = [
-    kustomization_resource.horusec_operator
-  ]
-}
-
 data "template_file" "horusec_platform" {
   count = var.horusec_operator_enabled ? 1 : 0
 
@@ -24,4 +14,9 @@ data "template_file" "horusec_platform" {
     ANALYTIC_DB_SECRET_NAME = kubernetes_secret.analytic_db.metadata[0].name
     PLATFORM_DB_SECRET_NAME = kubernetes_secret.platform_db.metadata[0].name
   }
+}
+
+resource "local_file" "horusec_platform" {
+  filename = "${path.root}/tmp/horusec-platform.yaml"
+  content = data.template_file.horusec_platform[0].rendered
 }
